@@ -73,7 +73,7 @@ class CryptoPayment(PaymentMethod):
 creditcard = CreditCardPayment(200, 7, PaymentType.CREDIT_CARD)
 paypal = PayPalPayment(300, 10, PaymentType.PAYPAL)
 crypto = CryptoPayment(150, 5, PaymentType.CRYPTO)
-print(creditcard.pay())
+creditcard.pay()
 print(creditcard.discount())
 print(paypal.pay())
 print(paypal.discount())
