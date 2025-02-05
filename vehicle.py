@@ -106,28 +106,3 @@ class Motorcycle(Vehicle):
 
     def get_info(self):
         return f"This {self._model_name} is made by {self._manufacturer} in {self._year}."
-
-
-car = (create_vehicle
-    (VehicleType.CAR,
-    50,
-    2024,
-    "Tesla",
-    "Model S"))
-
-car.drive()
-car.get_wheels()
-car.fuel(FuelPercent.HALF)
-car.get_info()
-
-motorcycle = (create_vehicle
-    (VehicleType.MOTORCYCLE,
-    15,
-    2023,
-    "Harley-Davidson",
-    "Street Glide"))
-
-motorcycle.drive()
-motorcycle.get_wheels()
-motorcycle.fuel(FuelPercent.HALF)
-motorcycle.get_info()

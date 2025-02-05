@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8d17a957-065b-4431-8293-6f07da609363" name="Changes" comment="my first commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vehicle.py" beforeDir="false" afterPath="$PROJECT_DIR$/vehicle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_vehicle.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_vehicle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vehicle.py" beforeDir="false" afterPath="$PROJECT_DIR$/vehicle.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +58,7 @@
     "Python.vehicle.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "vehicle-test",
+    "git-widget-placeholder": "#4 on vehicle-test",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/shaha/Vehicle",
     "node.js.detected.package.eslint": "true",
@@ -118,7 +117,7 @@
       <workItem from="1738664758480" duration="1201000" />
       <workItem from="1738669553144" duration="3292000" />
       <workItem from="1738689777964" duration="3322000" />
-      <workItem from="1738734227046" duration="14531000" />
+      <workItem from="1738734227046" duration="16647000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
