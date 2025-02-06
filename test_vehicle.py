@@ -1,8 +1,9 @@
 import unittest
 import vehicle as ve
+from vehicle import FuelCapacityError, InvalidYearError
+
 
 class TestVehicle(unittest.TestCase):
-
     def setUp(self):
         self._car = ve.Car(50,
                             2024,
@@ -28,14 +29,18 @@ class TestVehicle(unittest.TestCase):
         self.assertGreater(self._motorcycle._fuel_capacity, 0)
         self.assertGreater(self._motorcycle._year, 0)
 
-    def test_create_vehicle_error_handling(self):
+    def test_invalid_vehicle_type_error_handling(self):
         """Verifying error handling when unexpected values are given to the method."""
         with self.assertRaisesRegex(ve.VehicleTypeError, "Invalid vehicle type. Please choose 'CAR' or 'MOTORCYCLE'."):
             ve.create_vehicle("car", 50, 2024, "Tesla", "Model S")
 
-        with self.assertRaisesRegex(ValueError, "The fuel capacity must be a positive number."):
+    def test_invalid_fuel_capacity_error_handling(self):
+        with self.assertRaisesRegex(FuelCapacityError, "The fuel capacity must be a positive number."):
             ve.create_vehicle(ve.VehicleType.CAR, -5, 2024, "Tesla", "Model S")
 
+    def test_invalid_year_error_handling(self):
+        with self.assertRaisesRegex(InvalidYearError, f"The year must be a positive number."):
+            ve.create_vehicle(ve.VehicleType.CAR, 50, -2024, "Tesla", "Model S")
 
     def test_drive_car(self):
         expected_output = "Driving a car."
@@ -46,29 +51,16 @@ class TestVehicle(unittest.TestCase):
         self.assertEqual(self._motorcycle.drive(), expected_output)
 
     def test_fuel_method_for_car(self):
-        self.assertEqual(self._car.get_fuel_capacity() * ve.FuelPercent.FULL.value, 50)
-        self.assertEqual(self._car.get_fuel_capacity() * ve.FuelPercent.THREE_QUARTERS.value, 37.5)
-        self.assertEqual(self._car.get_fuel_capacity() * ve.FuelPercent.HALF.value, 25)
-        self.assertEqual(self._car.get_fuel_capacity() * ve.FuelPercent.ONE_QUARTER.value, 12.5)
-
-    def test_fuel_method_for_car_error_handling(self):
-        """Verifying error handling when unexpected value is given to the method."""
-        with self.assertRaisesRegex(ValueError, "Invalid fuel percentage. "
-                                                "Please choose from ONE_QUARTER, HALF, THREE_QUARTERS, or FULL."):
-            self._car.fuel(50)
-
+        self.assertEqual(self._car.fuel(ve.FuelPercent.FULL),  "Filling 50.0 liters of fuel.")
+        self.assertEqual(self._car.fuel(ve.FuelPercent.THREE_QUARTERS),  "Filling 37.5 liters of fuel.")
+        self.assertEqual(self._car. fuel(ve.FuelPercent.HALF),  "Filling 25.0 liters of fuel.")
+        self.assertEqual(self._car. fuel(ve.FuelPercent.ONE_QUARTER),  "Filling 12.5 liters of fuel.")
 
     def test_fuel_method_for_motorcycle(self):
-        self.assertEqual(self._motorcycle.get_fuel_capacity() * ve.FuelPercent.FULL.value, 15)
-        self.assertEqual(self._motorcycle.get_fuel_capacity() * ve.FuelPercent.THREE_QUARTERS.value, 11.25)
-        self.assertEqual(self._motorcycle.get_fuel_capacity() * ve.FuelPercent.HALF.value, 7.5)
-        self.assertEqual(self._motorcycle.get_fuel_capacity() * ve.FuelPercent.ONE_QUARTER.value, 3.75)
-
-    def test_fuel_method_for_motorcycle_error_handling(self):
-        """ Verifying error handling when unexpected value is given to the method."""
-        with self.assertRaisesRegex(ValueError, f"15 is invalid fuel percentage. "
-                                                "Please choose from ONE_QUARTER, HALF, THREE_QUARTERS, or FULL."):
-            self._motorcycle.fuel(15)
+        self.assertEqual(self._motorcycle.fuel(ve.FuelPercent.FULL),  "Filling 15.0 liters of fuel.")
+        self.assertEqual(self._motorcycle.fuel(ve.FuelPercent.THREE_QUARTERS),  "Filling 11.25 liters of fuel.")
+        self.assertEqual(self._motorcycle.fuel(ve.FuelPercent.HALF),  "Filling 7.5 liters of fuel.")
+        self.assertEqual(self._motorcycle.fuel(ve.FuelPercent.ONE_QUARTER),  "Filling 3.75 liters of fuel.")
 
     def test_get_info_car(self):
         self.assertEqual(self._car.get_info(), "This Corolla is made by Toyota in 2024.")
